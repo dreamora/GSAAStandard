@@ -1,0 +1,39 @@
+{
+    "name": "ch.dreamora.gsaastandard",
+    "displayName": "Dreamora.GSAAStandard",
+    "description": "Optimized Standard lighting model PBR shaders with support GSAA, SLO and color noise dithering.",
+    "version": "1.0.0",
+    "unity": "2018.4",
+    "unityRelease": "1f1",
+    "keywords": [
+        "shader",
+        "pbr",
+        "standard",
+        "vr",
+        "antialias",
+        "aa",
+        "anti-alias"
+    ],
+    "homepage": "https://github.com/dreamora/GSAAStandard/",
+    "bugs": {
+        "url": "https://github.com/dreamora/GSAAStandard/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dreamora/GSAAStandard.git"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Marc Schaerer, dreamora.ch",
+        "email": "hello@dreamora.ch",
+        "url": "https://github.com/dreamora"
+    },
+    "dependencies": {},
+    "files": [
+        "*.md",
+        "*.meta",
+        "*.xml",
+        "Editor",
+        "Runtime"
+    ]
+}
