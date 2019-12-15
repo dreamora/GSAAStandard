@@ -11,5 +11,5 @@ It expands on this with a custom shader editor that controls shader feature acti
 SLO will only work on lightmapped objects
 
 # Origin note
-This is a performance optimized Unity package version basing on the Valve GSAA + dither implementation by Xiexe & TCL under MIT at
-https://github.com/Xiexe/PBR_Standard_Dithered_GSAA_SLO
+This is a performance optimized Unity package version for usage in the package manager.
+It bases on on the Valve GSAA + dither implementation by Xiexe & TCL under MIT at https://github.com/Xiexe/PBR_Standard_Dithered_GSAA_SLO
