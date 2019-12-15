@@ -187,7 +187,11 @@ void surf(Input i , inout SurfaceOutputDitheredStandard o)
 
 #ifdef DITHERING_ON
     // Compute Dithering
+    #ifdef DITHERING_MOBILE
     o.Dithering = (ditherNoiseFuncLow(i.uv_texcoord.xy) - 0.5) * 2 * _NoiseScale;
+    #else
+    o.Dithering = (ditherNoiseFuncHigh(i.uv_texcoord.xy) - 0.5) * 2 * _NoiseScale;
+    #endif
 #else
     o.Dithering = 0.001;
 #endif

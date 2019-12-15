@@ -31,10 +31,7 @@ namespace Dreamora.GSAAStandard.Editor
             DoAlbedo();
 
             EditorGUILayout.Space();
-            if (DoNormal())
-            {
-                DoSpecularOcclusion();
-            }
+            DoNormal();
 
             EditorGUILayout.Space();
             DoPBR();
@@ -46,9 +43,16 @@ namespace Dreamora.GSAAStandard.Editor
             DoDithering();
 
             EditorGUILayout.Space();
+            DoSpecularOcclusion();
+
+            EditorGUILayout.Space();
             DoDefaultOptions();
         }
 
+        /// <summary>
+        /// Draw the Albedo and color editor.
+        /// This is also responsible for setting the ALBEDO_TEX_ON shader keyword that controls texture fetching.
+        /// </summary>
         private void DoAlbedo()
         {
             EditorGUI.BeginChangeCheck();
@@ -74,8 +78,12 @@ namespace Dreamora.GSAAStandard.Editor
                 SetKeyword("ALBEDO_TEX_ON", albedoMap.textureValue != null);
             }
         }
-
-        private bool DoNormal()
+        
+        /// <summary>
+        /// Draw the normal map and normal scale editor.
+        /// This is also responsible for setting the NORMAL_ON shader keyword that controls the usage of normal mapping.
+        /// </summary>
+        private void DoNormal()
         {
             EditorGUI.BeginChangeCheck();
             MaterialProperty normalMap = FindProperty("_BumpMap");
@@ -96,10 +104,13 @@ namespace Dreamora.GSAAStandard.Editor
             {
                 SetKeyword("NORMAL_ON", hasNormal);
             }
-
-            return hasNormal;
         }
-
+        
+        /// <summary>
+        /// Draw the PBR editor part including the pbr texture map and the metallic, smoothness and AO strength.
+        /// This is also responsible for setting the PBR_TEX_ON shader keyword that controls if the pbr texture is being used to calculate
+        /// the materials PBR attributes.
+        /// </summary>
         private void DoPBR()
         {
             EditorGUI.BeginChangeCheck();
@@ -126,6 +137,11 @@ namespace Dreamora.GSAAStandard.Editor
             }
         }
 
+        /// <summary>
+        /// Draw the emission and albedo boost editor.
+        /// This is also responsible for setting the EMISSION_ON, EMISSION_TEX_ON and EMISSION_ALBEDO_BOOST shader keywords that control
+        /// the presence of emission but also if it is driven by an emission mask texture and if the albedo color is being boosted.
+        /// </summary>
         private void DoEmission()
         {
             EditorGUI.BeginChangeCheck();
@@ -157,6 +173,11 @@ namespace Dreamora.GSAAStandard.Editor
             }
         }
 
+        /// <summary>
+        /// Draw the dithering noise editor.
+        /// This is also responsible for setting the DITHERING_ON and DITHERING_MOBILE shader keywords that control the usage of the
+        /// dithering noise as well is the quality and computational cost of the dithering.
+        /// </summary>
         private void DoDithering()
         {
             MaterialProperty useDithering = FindProperty("_DitheringOn");
@@ -171,10 +192,18 @@ namespace Dreamora.GSAAStandard.Editor
                 EditorGUI.indentLevel += 1;
                 MaterialProperty ditheringNoiseScaleSlider = FindProperty("_NoiseScale");
                 _editor.ShaderProperty(ditheringNoiseScaleSlider, MakeLabel(ditheringNoiseScaleSlider));
+                MaterialProperty mobileDithering = FindProperty("_DitheringMobile");
+                _editor.ShaderProperty(mobileDithering, MakeLabel(mobileDithering));
                 EditorGUI.indentLevel -= 1;
             }
+            
         }
 
+        /// <summary>
+        /// Draw the specular occlusion editor.
+        /// This is also responsible for setting the SPECULAROCCLUSION_ONshader keyword that control the usage of the
+        /// specular occlusion of the lightmap by reducing the lightmaps impact.
+        /// </summary>
         private void DoSpecularOcclusion()
         {
             MaterialProperty useSpecularOcclusion = FindProperty("_SpecularOcclusionOn");
@@ -193,6 +222,11 @@ namespace Dreamora.GSAAStandard.Editor
             }
         }
 
+        /// <summary>
+        /// Draw the default editors for specular hightlight and glossy reflection.
+        /// This is also responsible for setting the _SPECULARHIGHLIGHTS_OFF and _GLOSSYREFLECTIONS_OFF keyword that control the standard
+        /// pipeliens usage of specular highlights and metallic glossy reflections of reflection probes (scene or lighting).
+        /// </summary>
         private void DoDefaultOptions()
         {
             MaterialProperty highlights = FindProperty("_SpecularHighlights");

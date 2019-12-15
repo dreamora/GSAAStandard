@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: StandardLightingPBRDitheredGSAA
   m_Shader: {fileID: 4800000, guid: b806d4e4e2b20c449bf4bfa547024169, type: 3}
-  m_ShaderKeywords: EMISSION_TEX_ON NORMAL_ON SPECULAROCCLUSION_ON
+  m_ShaderKeywords: ALBEDO_TEX_ON EMISSION_TEX_ON NORMAL_ON PBR_TEX_ON SPECULAROCCLUSION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,19 +20,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: e59519b819b1843cb94acf4e281e8c45, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2375adb3fe6fd0747b4d33d264542941, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 29a06a0eefee1b542a7c286f1689ffab, type: 3}
+        m_Texture: {fileID: 2800000, guid: 80ab37a9e4f49c842903bb43bdd7bcd2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: eea7c41e5bf397345994c7bcf80c890a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: dcf5746db0d57ee4e8ba8244e65281dc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
@@ -40,17 +40,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BumpScale: 1
     - _DitheringOn: 0
     - _EmissionAlbedoBoostOn: 0
     - _Glossiness: 1
     - _GlossyReflections: 1
     - _Metallic: 1
-    - _NoiseScale: 0
+    - _NoiseScale: 0.0643
     - _OcclusionStrength: 1
     - _SpecularHighlights: 1
-    - _SpecularLightmapOcclusion: 0.528
+    - _SpecularLightmapOcclusion: 1
     - _SpecularOcclusionOn: 1
     - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.3077861, g: 0.3077861, b: 0.3077861, a: 1}
+    - _EmissionColor: {r: 1.2235295, g: 1.2235295, b: 1.2235295, a: 1}

@@ -24,6 +24,7 @@ Shader "Dreamora/Standard"
         // Dithering
        [Toggle(DITHERING_ON)] _DitheringOn("USE DITHERING", Int) = 0
         _NoiseScale("Dithering Scale", Range(0,0.2)) = 0.001
+       [Toggle(DITHERING_MOBILE)] _DitheringMobile("USE FAST DITHERING", Int) = 1
 
         // Specular Lightmap Occlusion
         [Toggle(SPECULAROCCLUSION_ON)] _SpecularOcclusionOn("USE SPECULAR OCCLUSION", Int) = 0
@@ -50,6 +51,7 @@ Shader "Dreamora/Standard"
         #pragma multi_compile _ EMISSION_ALBEDO_BOOST
         #pragma multi_compile _ PBR_TEX_ON
         #pragma multi_compile _ DITHERING_ON
+        #pragma multi_compile _ DITHERING_MOBILE
         #pragma multi_compile _ SPECULAROCCLUSION_ON
         #pragma multi_compile _ _SPECULARHIGHLIGHTS_OFF
         #pragma multi_compile _ _GLOSSYREFLECTIONS_OFF
