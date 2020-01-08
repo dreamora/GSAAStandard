@@ -4,7 +4,7 @@ Shader "Dreamora/Standard"
     {
         // Albedo Map and Tint Color
         _MainTex("MainTex", 2D) = "white" {}
-        [HDR]_Color("Color Tint", Color) = (1,1,1,1)
+        _Color("Color Tint", Color) = (1,1,1,1)
 
         // Normal Map
         [Normal]_BumpMap("Normal", 2D) = "bump" {}
@@ -29,7 +29,7 @@ Shader "Dreamora/Standard"
         // Specular Lightmap Occlusion
         [Toggle(SPECULAROCCLUSION_ON)] _SpecularOcclusionOn("USE SPECULAR OCCLUSION", Int) = 0
         _SpecularLightmapOcclusion("Specular Lightmap Occlusion Scale", Range(0,1)) = 1
-        
+
         [ToggleOff(_SPECULARHIGHLIGHTS_OFF)] _SpecularHighlights("Specular Highlights", Int) = 1.0
         [ToggleOff(_GLOSSYREFLECTIONS_OFF)] _GlossyReflections("Glossy Reflections", Int) = 1.0
 
@@ -55,7 +55,7 @@ Shader "Dreamora/Standard"
         #pragma multi_compile _ SPECULAROCCLUSION_ON
         #pragma multi_compile _ _SPECULARHIGHLIGHTS_OFF
         #pragma multi_compile _ _GLOSSYREFLECTIONS_OFF
-        
+
         #include "UnityPBSLighting.cginc"
         #include "Lighting.cginc"
         #pragma target 3.0
@@ -70,20 +70,20 @@ Shader "Dreamora/Standard"
         #endif
 
         #include "StandardLightingModelDithered.cginc"
-        
+
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
         // #pragma instancing_options assumeuniformscaling
         UNITY_INSTANCING_BUFFER_START(Props)
         // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
-
         ENDCG
 
         CGPROGRAM
         #pragma surface surf DitheredStandard keepalpha addshadow fullforwardshadows
         ENDCG
     }
+
     Fallback "Diffuse"
     CustomEditor "Dreamora.GSAAStandard.Editor.GSAAStandardEditor"
 }
