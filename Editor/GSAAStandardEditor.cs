@@ -13,14 +13,28 @@ namespace Dreamora.GSAAStandard.Editor
     /// </summary>
     public class GSAAStandardEditor : ShaderGUI
     {
-        private static readonly GUIContent StaticLabel = new GUIContent();
+        private const string AlbedoTextureKeyword = "ALBEDO_TEX_ON";
+        private const string NormalMapKeyword = "NORMAL_ON";
+        private const string PBRTextureKeyword = "PBR_TEX_ON";
+        private const string EmissionOnKeyword = "EMISSION_ON";
+        private const string EmissionTextureKeyword = "EMISSION_TEX_ON";
+        // EMISSION_ALBEDO_BOOST is handled by the Toggle Attribute _EmissionAlbedoBoostOn.
+        // DITHERING_ON is handled by the Toggle Attribute _DitheringOn.
+        // DITHERING_MOBILE is handled by the Toggle Attribute _DitheringMobile.
+        // SPECULAROCCLUSION_ON is handled by the Toggle Attribute _SpecularOcclusionOn.
+        // _SPECULARHIGHLIGHTS_OFF is handled by the Toggle Attribute _SpecularHighlights.
+        // _GLOSSYREFLECTIONS_OFF is handled by the Toggle Attribute _GlossyReflections.
 
+        private const string EmissionAlbedoBoostKeyword = "EMISSION_ALBEDO_BOOST";
+
+        private static readonly GUIContent StaticLabel = new GUIContent();
         private static readonly string _forwardText = "Forward Rendering Options";
         private static readonly GUIContent _highlightsText = EditorGUIUtility.TrTextContent("Specular Highlights", "Specular Highlights");
         private static readonly GUIContent _reflectionsText = EditorGUIUtility.TrTextContent("Reflections", "Glossy Reflections");
         private MaterialEditor _editor;
         private MaterialProperty[] _properties;
         private Material _target;
+
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] materialProperties)
         {
@@ -75,7 +89,7 @@ namespace Dreamora.GSAAStandard.Editor
 
             if (EditorGUI.EndChangeCheck())
             {
-                SetKeyword("ALBEDO_TEX_ON", albedoMap.textureValue != null);
+                SetKeyword(AlbedoTextureKeyword, albedoMap.textureValue != null);
             }
         }
         
@@ -102,7 +116,7 @@ namespace Dreamora.GSAAStandard.Editor
 
             if (EditorGUI.EndChangeCheck())
             {
-                SetKeyword("NORMAL_ON", hasNormal);
+                SetKeyword(NormalMapKeyword, hasNormal);
             }
         }
         
@@ -133,7 +147,7 @@ namespace Dreamora.GSAAStandard.Editor
 
             if (EditorGUI.EndChangeCheck())
             {
-                SetKeyword("PBR_TEX_ON", pbrMap.textureValue != null);
+                SetKeyword(PBRTextureKeyword, pbrMap.textureValue != null);
             }
         }
 
@@ -149,7 +163,7 @@ namespace Dreamora.GSAAStandard.Editor
 
             if (EditorGUI.EndChangeCheck())
             {
-                SetKeyword("EMISSION_ON", hasEmission);
+                SetKeyword(EmissionOnKeyword, hasEmission);
             }
 
             if (hasEmission)
@@ -168,7 +182,7 @@ namespace Dreamora.GSAAStandard.Editor
 
                 if (EditorGUI.EndChangeCheck())
                 {
-                    SetKeyword("EMISSION_TEX_ON", emissionMap.textureValue != null);
+                    SetKeyword(EmissionTextureKeyword, emissionMap.textureValue != null);
                 }
             }
         }
@@ -196,7 +210,6 @@ namespace Dreamora.GSAAStandard.Editor
                 _editor.ShaderProperty(mobileDithering, MakeLabel(mobileDithering));
                 EditorGUI.indentLevel -= 1;
             }
-            
         }
 
         /// <summary>
