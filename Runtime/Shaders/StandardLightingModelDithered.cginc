@@ -171,7 +171,7 @@ void surf(Input i , inout SurfaceOutputDitheredStandard o)
     float2 uv_MetallicGlossMap = i.uv_texcoord * _MetallicGlossMap_ST.xy + _MetallicGlossMap_ST.zw;
     float4 pbrMap = tex2D(_MetallicGlossMap, uv_MetallicGlossMap);
     o.Metallic = pbrMap.r * _Metallic;
-    o.Smoothness = (1-pbrMap.g) * _Glossiness;
+    o.Smoothness = pbrMap.g * _Glossiness;
     o.Occlusion = lerp(1.0, pbrMap.b, _OcclusionStrength);
 #else
     o.Metallic = _Metallic;
