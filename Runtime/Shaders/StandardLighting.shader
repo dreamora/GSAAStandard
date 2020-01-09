@@ -80,7 +80,7 @@ Shader "Dreamora/Standard"
         ENDCG
 
         CGPROGRAM
-        #pragma surface surf DitheredStandard keepalpha addshadow fullforwardshadows
+        #pragma surface surf DitheredStandard fullforwardshadows
         ENDCG
     }
 
