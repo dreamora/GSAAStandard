@@ -87,7 +87,7 @@ inline void LightingDitheredStandard_GI(inout SurfaceOutputDitheredStandard s, U
         // Quick hack to kill specular in lightmap shadows
         half4 bakedColorTex = UNITY_SAMPLE_TEX2D(unity_Lightmap, data.lightmapUV.xy);
         half3 bakedColor = DecodeLightmap(bakedColorTex);
-        gi.indirect.specular *= lerp(1.0, saturate(Luminance(bakedColor)), s.SpecularLightmapOcclusion);
+        gi.indirect.specular *= lerp(1.0, pow(length(bakedColor), 0.5), s.SpecularLightmapOcclusion);
     #endif
 
 #ifdef DITHERING_ON
